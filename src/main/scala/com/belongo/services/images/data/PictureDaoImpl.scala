@@ -2,6 +2,8 @@ package com.belongo.services.images.data
 
 import javax.persistence.EntityManager
 import javax.transaction.Transactional
+import com.belongo.services.images.user.User
+
 import scala.collection.JavaConversions._
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
@@ -35,5 +37,11 @@ class PictureDaoImpl extends PictureDao {
 
   override def findAll(): List[Picture] = {
     entityManager.createQuery("SELECT p from Picture", classOf[Picture]).getResultList.toList
+  }
+
+  override def findByUser(user:User): List[Picture] = {
+    entityManager.createQuery("SELECT p from Picture p WHERE p.bucket = :bucket", classOf[Picture])
+      .setParameter("bucket",user.bucketName).getResultList.toList
+
   }
 }

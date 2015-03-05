@@ -24,4 +24,7 @@ class Picture extends Serializable {
   @BeanProperty
   var path: String  = _
 
+  @BeanProperty
+  var bucket:String = _
+
 }

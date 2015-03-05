@@ -9,6 +9,6 @@ class UserService {
 
 object UserService {
   def getActualUserByToken(token:String): User = {
-      new User("dummy", "dummy")
+      new User("dummy", "dummy", "dummybucket")
   }
 }

@@ -13,11 +13,10 @@ import org.springframework.web.multipart.MultipartFile
  */
 @RestController
 @RequestMapping(Array("/image"))
-class UploadImage {
+class ImageCntrl {
 
   @Autowired
   var resource:SimpleResourceUploader = _
-
 
 
   @RequestMapping(value = Array("/upload"), method = Array(RequestMethod.GET))
@@ -31,15 +30,20 @@ class UploadImage {
   @RequestMapping(value = Array("/upload"), method = Array(RequestMethod.POST))
   @ResponseBody
   def upload(@RequestParam("name") name:String, @RequestParam("file") file:MultipartFile) : String = {
+    val user:User = UserService.getActualUserByToken(getActualToken())
     // this should be id of the user mby?
-    val bucketName = "simisbucked"
-    resource.upload(bucketName, file, name)
+    resource.upload(user, file, name)
     "succesfully uploaded file"
   }
 
+  def getActualToken(): String = {
+    "notoken"
+  }
+
   @ResponseBody
+  @RequestMapping(value = Array("/user"), method = Array(RequestMethod.GET))
   def allImages(): List[Picture] = {
-    val user:User = UserService.getActualUserByToken("notoken")
+    val user:User = UserService.getActualUserByToken(getActualToken())
     resource.getImagesOfUser(user)
   }
 
