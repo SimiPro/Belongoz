@@ -1,9 +1,10 @@
 package com.belongo.services.images.data
 
-import java.util.UUID
+
 import javax.persistence.{Id, GeneratedValue, Entity}
 
 import scala.beans.BeanProperty
+
 
 /**
  * Created by simipro on 2/28/15.
@@ -20,6 +21,9 @@ class Picture extends Serializable {
 
   @BeanProperty
   var userId:Long = _
+
+  @BeanProperty
+  var localId:Long = _
 
   @BeanProperty
   var path: String  = _

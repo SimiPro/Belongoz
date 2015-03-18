@@ -18,7 +18,14 @@ class PictureDaoImpl extends PictureDao {
   var entityManager:EntityManager = _
 
   override def save(picture: Picture): Unit = picture.id match {
-    case 0 => entityManager.persist(picture)
+    case 0 => {
+      try {
+        entityManager.persist(picture)
+      } catch  {
+        case e: Exception => throw e
+      }
+
+    }
     case _ => entityManager.merge(picture)
 
   }
@@ -42,6 +49,5 @@ class PictureDaoImpl extends PictureDao {
   override def findByUser(user:User): List[Picture] = {
     entityManager.createQuery("SELECT p from Picture p WHERE p.bucket = :bucket", classOf[Picture])
       .setParameter("bucket",user.bucketName).getResultList.toList
-
   }
 }

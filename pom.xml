@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>imageServing</module>
+        <module>userService</module>
+    </modules>
     <properties>
         <spring-cloud-version>1.1.1.RELEASE</spring-cloud-version>
 
@@ -16,6 +21,18 @@
             <url>http://repo.spring.io/libs-milestone-local</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-parent</artifactId>
+                <version>1.0.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <groupId>com.belongo</groupId>
@@ -70,6 +87,8 @@
 
         <!-- END DATA -->
 
+        <!-- Marshalling -->
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -85,6 +104,21 @@
             <artifactId>jackson-core</artifactId>
             <version>2.5.1</version>
         </dependency>
+
+        <!-- end marschalling -->
+        <!-- OAUTH2 -->
+
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <!-- END OAUTH2 -->
+
     </dependencies>
 
 
