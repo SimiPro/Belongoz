@@ -28,7 +28,8 @@ class ImageCntrl {
 
   @RequestMapping(value = Array("/upload"), method = Array(RequestMethod.GET))
   @ResponseBody
-  def upload():String = {
+  def upload(@RequestParam("file") file:MultipartFile):String = {
+    println("FILENAME:::: " + file.getName)
     return "You can upload a file posting to the same url different request method"
   }
 

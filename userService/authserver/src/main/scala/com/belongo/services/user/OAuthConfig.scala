@@ -48,5 +48,11 @@ class OAuthConfig extends AuthorizationServerConfigurerAdapter {
       .secret("curl")
       .authorizedGrantTypes("authorization_code", "refresh_token", "password")
       .scopes("belongo")
+    .and()
+      .withClient("ios")
+      .secret("simiproo")
+      .authorizedGrantTypes("authorization_code", "refresh_token","password")
+      .scopes("ios")
+
   }
 }

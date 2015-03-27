@@ -1,8 +1,9 @@
 GET TOKEN
 
-curl curl:curl localhost:8005/userservice/oauth/token -d grant_type=password -d client_id=curl -d username=user -d password=password
+curl curl:curl@localhost:8005/userservice/oauth/token -d grant_type=password -d client_id=curl -d username=user -d password=password
+curl ios:simiproo@localhost:8005/userservice/oauth/token -d grant_type=password -d client_id=ios -d username=user -d password=password
 
-curl localhost:9000 -H Authorization: Bearer b5836e60-23b8-4e22-b8f3-bbfdf0e18195
+curl localhost:9005/ios/image/ -H "Authorization: Bearer 229aadd2-fa52-4007-a0b1-79e7c6be9fd3"
 
 
 
